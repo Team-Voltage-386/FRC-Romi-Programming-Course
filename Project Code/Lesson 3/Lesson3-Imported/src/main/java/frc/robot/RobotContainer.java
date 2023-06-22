@@ -67,9 +67,9 @@ public class RobotContainer {
     // is scheduled over it.
     m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
 
-    JoystickButton button1 = new JoystickButton(m_controller, 1);
+    JoystickButton buttonx = new JoystickButton(m_controller, 3); // Xbutton = 3
 
-    button1.onTrue(new TurnLedOn(m_onboardIO))
+    buttonx.onTrue(new TurnLedOn(m_onboardIO))
       .onFalse(new TurnLedOff(m_onboardIO));
 
     // Example of how to use the onboard IO

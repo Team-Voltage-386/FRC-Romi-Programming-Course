@@ -20,9 +20,10 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
@@ -36,9 +37,11 @@ public class RobotContainer {
   // Create SmartDashboard chooser for autonomous routines
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the hardware "overlay"
-  // that is specified when launching the wpilib-ws server on the Romi raspberry pi.
-  // By default, the following are available (listed in order from inside of the board to outside):
+  // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the
+  // hardware "overlay" that is specified when launching the wpilib-ws server on
+  // the Romi raspberry pi.
+  // By default, the following are available (listed in order from inside of the
+  // board to outside):
   // - DIO 8 (mapped to Arduino pin 11, closest to the inside of the board)
   // - Analog In 0 (mapped to Analog Channel 6 / Arduino Pin 4)
   // - Analog In 1 (mapped to Analog Channel 2 / Arduino Pin 20)
@@ -47,17 +50,19 @@ public class RobotContainer {
   //
   // Your subsystem configuration should take the overlays into account
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
   }
 
   /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by instantiating a {@link GenericHID} or one of its subclasses
+   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
     // Default command is arcade drive. This will run unless another command
@@ -91,7 +96,11 @@ public class RobotContainer {
    * @return the command to run in teleop
    */
   public Command getArcadeDriveCommand() {
+    // Button 6 (Right Bumper) is used to cut power
     return new ArcadeDriveCutPower(
-        m_drivetrain, () -> -m_controller.getRawAxis(4), () -> m_controller.getRawAxis(1), () -> m_controller.getRawButton(6));
+        m_drivetrain,
+        () -> -m_controller.getRawAxis(1),
+        () -> -m_controller.getRawAxis(4),
+        () -> m_controller.getRawButton(6));
   }
 }
